@@ -58,8 +58,9 @@ FUNCTION get_next_word(curr_word, markov_model, seed):
 ```
 4- create a function called generate_random_text that accepts a Markov model and an integer referring to the random seed used and does the following:
 	a. randomly selects a word from the starting state probabilities in the Markov chain model.
-	b. daisy chains words by randomly selecting them based on the previous word until the desired sentence length is achieved.
+	b. daisy chains words by randomly selecting them based on the previous word until an end state word is selected.
 	c. Returns the generated sentence.
+	d. Create a "door stop" in case the code never selects an end state. Since words are randomly generated, it is possible that it will keep looping through the Markov model without reaching an end state. We plan to place a word cap on the sentence length to prevent the code from infinitely runnig
 ```
 FUNCTION generate_random_test(markov_mode, seed):
 	TODO
