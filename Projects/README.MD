@@ -21,10 +21,10 @@ FOR each sonnet in sonnets.txt:
     UPDATE nth_order_markov_model with the returned model
 ```
 2- create a function called build_markov_model that accept a dictionary of dictionaries containing the current Markov model, a str containing the new text and an integer referring to the order of the model and then does the following:
-a. splits current sonnet separate words.
-	b- loops through the current sonnet and creates a Markov model based on the order specified.
-	c- Note that the starting state for every sonnet will need to be separately counted.
-	d- Returns a dictionary of dictionaries containing the states as keys and dictionaries of words and their frequencies as key-value pairs as values.
+	a. splits current sonnet separate words.
+	b. loops through the current sonnet and creates a Markov model based on the order specified.
+	c. Note that the starting state for every sonnet will need to be separately counted.
+	d. Returns a dictionary of dictionaries containing the states as keys and dictionaries of words and their frequencies as key-value pairs as values.
 ```
 FUNCTION build_markov_model(markov_model, curr_sonnet, order):
     IF markov_model is None:
