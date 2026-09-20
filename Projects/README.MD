@@ -40,9 +40,9 @@ FUNCTION build_markov_model(markov_model, current_sonnet, order):
 ```
 
 2. Create a function `get_next_word` that accepts a tuple containing the current word, a Markov model, and an integer containing a seed number and then does the following:  
-	a. Finds the dictionary containing the next possible words and their frequencies from the Markov model.  
-	b. calculate transition probabilities for all next states using that dictionary.  
-	c. use the given seed to randomly select the next state.  
+	- Finds the dictionary containing the next possible words and their frequencies from the Markov model.  
+	- calculate transition probabilities for all next states using that dictionary.  
+	- use the given seed to randomly select the next state.  
 ```
 FUNCTION get_next_word(current_state, markov_model, seed): 
 	LOOK UP current_state in markov_model
@@ -60,10 +60,10 @@ FUNCTION get_next_word(current_state, markov_model, seed):
 ```
 
 3. Create a function `generate_random_text` that accepts a Markov model and an integer referring to the random seed used and does the following:  
-	a. Randomly selects a word from the starting state probabilities in the Markov chain model.  
-	b. daisy chains words by randomly selecting them based on the previous word until an end state word is selected.  
-	c. Returns the generated sentence.  
-	d. Creates a safety cap in case the model never selects an end state. Since words are randomly generated, it is possible that it will keep looping through the Markov model without reaching an end state. The maximum word count prevents the program from continuing indefinitely.
+	- Randomly selects a word from the starting state probabilities in the Markov chain model.  
+	- daisy chains words by randomly selecting them based on the previous word until an end state word is selected.  
+	- Returns the generated sentence.  
+	- Creates a safety cap in case the model never selects an end state. Since words are randomly generated, it is possible that it will keep looping through the Markov model without reaching an end state. The maximum word count prevents the program from continuing indefinitely.
 
 ```
 FUNCTION generate_random_text(markov_model, seed):
