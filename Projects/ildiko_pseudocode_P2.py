@@ -13,8 +13,6 @@ def generate_random_text(markov_model, seed=42):
     pass
  
  
-if __name__ == "__main__":
-    # Pick Your Poison: Sonnets
     poison_markov_model = dict()
     with open("data/sonnets.txt", "r") as poison_text:
         # Process the lines. Consider that sonnets are separated by an empty line.
