@@ -54,6 +54,7 @@ if __name__ == "__main__":
         #Add that word to the list of generated words.
         #Update the current word to be the word that was just picked (sliding the window forward if the order is greater than 1).
     #Once the end marker is generated, stop.
+        #Also stop early if a maximum word count is reached as a safeguard in case the end marker never gets generated.
     #Join all the generated words into a single string, seperated by spaces.
     #Return that string.
 
