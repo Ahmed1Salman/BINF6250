@@ -10,10 +10,11 @@ This project is centered around the building of a Markov Chain algorithm in Pyth
 # Pseudocode
 
 1. Create a function `build_markov_model` that accepts a dictionary of dictionaries containing the current Markov model, a string containing the new text and an integer referring to the order of the model and then does the following:  
-    a. Splits current sonnet into separate words.  
-    b. Loops through the current sonnet and creates a Markov model based on the order specified.  
-    c. Note that the starting state for every sonnet will need to be separately counted.  
-	d. Returns a dictionary of dictionaries containing the states as keys and dictionaries of words and their frequencies as key-value pairs as values.
+    a. Initializes a dictionary to store the model if the Markov model variable is None
+	b. Splits current sonnet into separate words.  
+    c. Loops through the current sonnet and creates a Markov model based on the order specified.  
+    d. Note that the starting state for every sonnet will need to be separately counted.  
+	e. Returns a dictionary of dictionaries containing the states as keys and dictionaries of words and their frequencies as key-value pairs as values.
 ```
 FUNCTION build_markov_model(markov_model, current_sonnet, order):
     IF markov_model is None:
