@@ -109,9 +109,11 @@ PRINT the generated text
 
 # Successes
 Description of the team's learning points
+* 
 
 # Struggles
 Description of the stumbling blocks the team experienced
+* 
 
 # Personal Reflections
 ## Group Leader
@@ -120,7 +122,7 @@ Group leader's reflection on the project
 
 ## Other members
 ### Selin Uenal
-Other members' reflections on the project
+This project was much more out of my comfort zone than the previous one. At first, the concept of Markov chains seemed relatively straightforward, but actually building a model and implementing it was much more difficult in practice. We found there were many instances where we could have executed the same thing in fundamentally different ways. We were able to continually discuss as a group to decide on a way before moving forward. We also found there were many edge cases, especially choosing the sonnets as our "poison" since they are multiple texts, with each sonnet having a start and end state, as opposed to one full text, like the other options. Ultimately, I feel like we were able to successfully build a model that we used to generate Shakespearean text. 
 
 ### Ildiko Polyak
 Other members' reflections on the project
