@@ -108,17 +108,21 @@ PRINT the generated text
 ```
 
 # Successes
-Description of the team's learning points
-* 
+- Our team successfully programmed an Nth order Markov Chain algorithm capable of handling any order.
+- Successfully created get_next_word function that uses the seed and Markov model provided to choose the next word in the sentence randomly.
+- generate_random_text successfully generates random text using the seed and Markov model provided until the end state marker is reached.
+- Successfully processed the lines into individual sonnets and stored them in a list in preparation for Markov model generation.
+- Our functions passed both tests for the first order and second order operations.
 
 # Struggles
-Description of the stumbling blocks the team experienced
-* 
+- Preventing our code from resetting the seed every time the get_next_word function was called required creative solutions. The seed should only be set once other wise the generated text will be repetitive.
+- Our Nth order algorithm handles states using tuples. Yet, "the one fish two fish" test we have requires the first order to use only strings for states. This caused the output for first order models to look differently than expected. We elected to use an if else statement to process the first order differently from higher orders.
+- Run away code is a genuine concern that we had in this project, and our worries were justified after we created our first few drafts. In short, there is a real possibility that the code gets stuck in a loop between states without reaching an end state. Sometimes it generates too much text before reaching an end state. Other times its infinitely stuck. This problem is bigger in lower order Markov models and less of a concern in higher order model. Our final version of the code mostly eliminated the problem but we invite the peer reviewers to try testing if they can find a seed that causes the code to loop infinitely. Our hard solution to this problem was to create a character limit to how big the generated sentence could be but we removed it in the final version of the code as we have not been able to find a seed that freezes it yet.
 
 # Personal Reflections
 ## Group Leader
 ### Ahmed Salman
-Group leader's reflection on the project
+Markov chains is one of those topics that I learned much about but never tried to implement one myself. This project was a great opportunity to see how far my programming skill can take me. Markov chains really ended up being a wolf in sheep's clothing. A simple idea that becomes much more complicated once you start thinking about generalizations, higher orders, edge cases, efficiency, and more. I am grateful for my teammates as there were many situations where I missed a bug in my code or an edge case that I do not think I would have caught on my own. For example, the seed resetting every time get_next_word is called was something Selin caught. Sonnets did also add the challenge of breaking apart each sonnet and catching the start and end states for each sonnet separately. I really believe that a model like ours is versatile enough to be used for much more than just text and sonnets.
 
 ## Other members
 ### Selin Uenal
