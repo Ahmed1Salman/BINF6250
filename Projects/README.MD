@@ -63,7 +63,6 @@ FUNCTION get_next_word(current_state, markov_model, seed):
 	- Randomly selects a word from the starting state probabilities in the Markov chain model.  
 	- daisy chains words by randomly selecting them based on the previous word until an end state word is selected.  
 	- Returns the generated sentence.  
-	- Creates a safety cap in case the model never selects an end state. Since words are randomly generated, it is possible that it will keep looping through the Markov model without reaching an end state. The maximum word count prevents the program from continuing indefinitely.
 
 ```
 FUNCTION generate_random_text(markov_model, seed):
@@ -72,7 +71,7 @@ FUNCTION generate_random_text(markov_model, seed):
     INITIALIZE generated_words as an empty list
     SET maximum_words to 200
 
-    WHILE the number of generated words is less than maximum_words:
+    WHILE TRUE:
         CALL get_next_word using current_state, markov_model, and seed
         STORE the returned word as next_word
 
@@ -113,6 +112,13 @@ PRINT the generated text
 - generate_random_text successfully generates random text using the seed and Markov model provided until the end state marker is reached.
 - Successfully processed the lines into individual sonnets and stored them in a list in preparation for Markov model generation.
 - Our functions passed both tests for the first order and second order operations.
+
+Example successful output:
+Seed = 7, Order = 2
+When most I wink, then do mine eyes best see, For all the treasure of his spring; For such a counterpart shall fame his wit, Making his style admired every where. Give my love that still, And you in Grecian tires are painted new: Speak of the east, Nor that full star that ushers in the world is grown so bad, Mad slanderers by mad ears believed be. That I have no end: Mine appetite I never saw that you were when first I hallow'd thy fair flower add the rank smell of weeds: But why of two oaths' breach do I find, Happy to have what thou dost review The very part was consecrate to thee: 'Thou single wilt prove none.' 
+
+Seed = 40, Order = 3
+Let those who are in favour with their stars Of public honour and proud titles boast, Whilst I, whom fortune of such triumph bars Unlook'd for joy in that I cannot know thy change. In many's looks, the false heart's history Is writ in moods, and frowns, and wrinkles strange. But heaven in thy creation did decree That in thy face sweet love should ever dwell; Whate'er thy thoughts, or thy heart's workings be, Thy looks should nothing thence, but sweetness tell. How like Eve's apple doth thy beauty grow, If thy sweet virtue answer not thy show! 
 
 # Struggles
 - Preventing our code from resetting the seed every time the get_next_word function was called required creative solutions. The seed should only be set once other wise the generated text will be repetitive.
