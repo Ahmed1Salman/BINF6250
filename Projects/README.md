@@ -1,22 +1,67 @@
 # Introduction
-Description of the project
+This project implements a Gibbs Sampler for motif discovery in DNA. As a MCMC algorithm, the Gibbs Sampler searches for motifs from random positions in DNA sequences, and refines them over time until convergence is achieved (or the 10000 loop limit is reached in this code). The function `GibbsMotifFinder(seqs, k, seed=None)` takes a list of DNA sequences and a motif length k and returns a 4 x k position frequency matrix (PFM). This algorithm assumes that we know the length of the expected motif (k) and that every sequence contains the motif. The algorithm waws tested on B. subtilis promoters and nrf1 chip-seq data. The final pfm was visualized using a sequence logo (seqlogo).
 
 # Pseudocode
 Put pseudocode in this box:
 
 ```
-Some pseudocode here
+GibbsMotifFinder(seqs, k, seed = None)
+    SET random seeds (random and numpy) using seed
+    CONVERT every sequence in seqs to uppercase
+    INITIALIZE motif empty list
+
+    # Initialization
+    for each sequence in seqs
+        start <- random integer in [0, length(sequence) - k]
+        append sequence[start : start + k] to motifs
+
+    unchanged <- 0
+
+    # Iterative refinement
+    for j in (1 to 10000)
+        i <- random integer in [0, number of sequences - 1]
+        motifs_excluded <- motifs with motif i removed
+
+        PFM <- build_pfm(motifs_excluded, k)
+        PWM <- build_pwm(PFM)       
+
+        if j is a multiple of 1000
+            print iteration, information content of PFM, elapsed time in seconds
+
+        candidates <- empty list
+        scores <- empty list
+        for each position p from 0 to length(seqs[i]) - k + 1
+            kmer <- seqs[i][p : p + k]
+            for each candidate in (kmer, reverse_complement(kmer))
+                append candidate to candidates
+                append score_kmer(candidate, PWM) to scores
+
+        weights <- [2 ^ s for each s in scores]    # log2 score -> positive weight
+        new_motif <- random choice from candidates, with probability
+                     proportional to weights    # P(m) = A_m / sum(A_l)
+
+        if new_motif == motifs[i]
+            unchanged <- unchanged + 1
+        else
+            unchanged <- 0
+        motifs[i] <- new_motif
+
+        if unchanged >= 200
+            break                                # motifs have converged
+
+    PFM_final <- build_pfm(motifs, k)
+    return PFM_final
 ```
 
 # Successes
-Description of the team's learning points
+Understanding the Gibbs Sampling algorithm from top to bottom: We spent a lot of time together trying to understand the algorithm before we even started programming anything. Then we spent even more time reading the python files accompanying the notebook that contained the helper functions. Understanding the functions was important before we start work on the algorithm. Once we understood the algorithm and the helper functions, programming a prototype was much faster, We were able to break down its steps to leaving out one sequence, building a PFM, then scoring the sequence, then choose a different starting point and repeat. We did have to figure out how to solve some problems such as the negative weight problem and the log2 transformation. We successfully tested the algorithm using the B. subtilis promoters and found the Shine-Dalgarno motif.
 
 # Struggles
-Description of the stumbling blocks the team experienced
+During the entire project, we had trouble contacting our third team mate. We (Ahmed Salman and Katelyn Dsouza) met together and worked on the project. During the 2 weeks duration, we messaged our third partner on Teams many times and we proceeded to email them using their Northeastern Email with no success. Beyond team trouble, running the code using the nrf1 data produced almost no results. The information content was too low by the time the 10000 loop limit was reached, I believe that increasing that limit significantly would provide a reasonable results but it would take much time to do. The algorithm as it stands takes 2 hours to finish (12 minutes per 1000 loops) and increasing the limit linearly increases the time required to finish the algorithm. Also, as discussed above, negative probabilities created problems as the `random.choice` function do not accept log2 or negative probabilities. 
 
 # Personal Reflections
 ## Group Leader
-Group leader's reflection on the project
+Ahmed Salman - 
 
 ## Other member
 Other members' reflections on the project
