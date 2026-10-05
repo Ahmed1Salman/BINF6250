@@ -2,32 +2,32 @@
 This project implements a Gibbs Sampler for motif discovery in DNA. As a MCMC algorithm, the Gibbs Sampler searches for motifs from random positions in DNA sequences, and refines them over time until convergence is achieved (or the 10000 loop limit is reached in this code). The function `GibbsMotifFinder(seqs, k, seed=None)` takes a list of DNA sequences and a motif length k and returns a 4 x k position frequency matrix (PFM). This algorithm assumes that we know the length of the expected motif (k) and that every sequence contains the motif. The algorithm waws tested on B. subtilis promoters and nrf1 chip-seq data. The final pfm was visualized using a sequence logo (seqlogo).
 
 # Pseudocode
-Put pseudocode in this box:
 
 ```
 GibbsMotifFinder(seqs, k, seed = None)
     SET random seeds (random and numpy) using seed
     CONVERT every sequence in seqs to uppercase
-    INITIALIZE motif empty list
+    INITIALIZE motifs empty list
 
     # Initialization
     for each sequence in seqs
         start <- random integer in [0, length(sequence) - k]
         append sequence[start : start + k] to motifs
 
+    PFM_total <- build_pfm(motifs, k)
     unchanged <- 0
 
     # Iterative refinement
     for j in (1 to 10000)
         i <- random integer in [0, number of sequences - 1]
-        motifs_excluded <- motifs with motif i removed
+        old_motif <- motifs[i]
 
-        PFM <- build_pfm(motifs_excluded, k)
-        PWM <- build_pwm(PFM)       
+        PFM_excluded <- PFM_total - build_pfm([old_motif], k)
+        PWM <- build_pwm(PFM_excluded)       
 
         candidates <- empty list
         scores <- empty list
-        for each position p from 0 to length(seqs[i]) - k + 1
+        for each position p from 0 to length(seqs[i]) - k
             kmer <- seqs[i][p : p + k]
             if kmer contains 'N'
                 skip to next position
@@ -43,6 +43,7 @@ GibbsMotifFinder(seqs, k, seed = None)
             unchanged <- unchanged + 1
         else
             unchanged <- 0
+            PFM_total <- PFM_excluded + build_pfm([new_motif], k) #add new motif's counts
         motifs[i] <- new_motif
 
         if j is a multiple of 1000
