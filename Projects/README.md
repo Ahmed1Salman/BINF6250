@@ -25,9 +25,6 @@ GibbsMotifFinder(seqs, k, seed = None)
         PFM <- build_pfm(motifs_excluded, k)
         PWM <- build_pwm(PFM)       
 
-        if j is a multiple of 1000
-            print iteration, information content of PFM, elapsed time in seconds
-
         candidates <- empty list
         scores <- empty list
         for each position p from 0 to length(seqs[i]) - k + 1
@@ -46,6 +43,9 @@ GibbsMotifFinder(seqs, k, seed = None)
             unchanged <- 0
         motifs[i] <- new_motif
 
+        if j is a multiple of 1000
+            print iteration, information content of PFM, elapsed time in seconds
+
         if unchanged >= 200
             break                                # motifs have converged
 
@@ -61,7 +61,7 @@ During the entire project, we had trouble contacting our third team mate. We (Ah
 
 # Personal Reflections
 ## Group Leader
-Ahmed Salman - 
+Ahmed Salman - The hardest part of this project was understanding the algorithm, the supporting functions, and how they are supposed to interact together. We spent more than a day to understand all of that. The implementation of the code was quicker once our understanding of the project. Honestly, I can't think of a better way to learn an algorithm inside out better than implementing it from the ground up. Coding is like trying to explain complicated algorithms to a 5 year old that can only do exactly as asked. On a side note, as stated above running the nrf1 file into the function produces nearly no data so I had the idea to try and increase the loop limit so that I can make the code run longer with the goal of identifying at what loop does the code finally "catch" the expected sequence. I am not expecting the code the fully execute, I am just attempting to see how far our algorithm can go until it finds the sequence in question.
 
 ## Other member
 Other members' reflections on the project
