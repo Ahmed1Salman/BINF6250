@@ -46,9 +46,6 @@ GibbsMotifFinder(seqs, k, seed = None)
             PFM_total <- PFM_excluded + build_pfm([new_motif], k) #add new motif's counts
         motifs[i] <- new_motif
 
-        if j is a multiple of 1000
-            print iteration, information content of PFM, elapsed time in seconds
-
         PFM_total <- PFM_excluded + build_pfm([new_motif], k) #add new motif's counts
 
         if unchanged >= 200
