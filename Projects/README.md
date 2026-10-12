@@ -2,7 +2,7 @@ Introduction
 
 
 Pseudocode
-`
+```
 CLASS DeBruijnGraph
   initialize with graph, k, and build_graph_from_reads attributes
   def method add_edge(self_left_right):
@@ -29,7 +29,7 @@ CLASS DeBruijnGraph
       if graph list is empty, append kmer into walk
       else kmer_walkback = i
     return eulerian_walk(node = kmer_walkback, graph = graph, seed = seed)
-`
+```
 Successes
 
 
