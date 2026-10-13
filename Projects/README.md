@@ -68,12 +68,12 @@ CLASS DeBruijnGraph
         contigs += walk_helper(node, graph_copy, rng)
 
   #Check for reverse complementarity and remove similar contigs to prevent duplication
-    complement ← table to calculate reverse compliment
+    complement = table to calculate reverse compliment
     seen = empty set and  kept = empty list
     FOR each contig in contigs sorted by length, longest first:
         hashes = empty list
         FOR each k-mer in contig:
-            canonical ← MIN(k-mer, reverse_complement(k-mer))
+            canonical = MIN(k-mer, reverse_complement(k-mer))
             append hash(canonical) to hashes
         IF hashes not empty AND fraction of hashes already in seen < 0.9:
             append contig to kept
@@ -88,7 +88,7 @@ CLASS DeBruijnGraph
       lengths = length of each contig
       num_contigs = count
       total_length = SUM(lengths)
-      longest = MAX(lengths);  shortest ← MIN(lengths)
+      longest = MAX(lengths);  shortest = MIN(lengths)
       mean_length = total_length / num_contigs
 
       threshold = total_length / 2
@@ -96,7 +96,7 @@ CLASS DeBruijnGraph
       FOR each contig sorted longest first:
           running += length(contig)
           IF running ≥ threshold:
-              n50 ← length(contig) and stop the code, else continue
+              n50 = length(contig) and stop the code, else continue
       RETURN all stats #NOTE: all stats are stored as keys in the dictionary named stats
 
   def write_fasta(contigs, filename):
