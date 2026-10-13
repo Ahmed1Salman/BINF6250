@@ -106,7 +106,7 @@ CLASS DeBruijnGraph
       #This causes one line to contain the contig number and the next line contain the sequence
 ```
 Successes
-
+We have successfully created the De Bruijn Graph using the build graph function with no errors as far as we can tell. The toy data is correctly assembled using the current function. On the yeast data, the assembly vs genome % is close to 100%. All of these are signs of success in this project. As you will see below, this did not result in connected contigs which means that there is still work to be done to improve the codes output.
 
 Struggles
 The biggest challenge we experienced in this project was the deduplication of reverse strand sequence without removing repeats from the sequence. We had to go through hoops to make sure that the code does not build contigs containing both reverse strand and forward strand sequences at the same time. This resulted in "fragmented" contigs that you can see in the yeast genome. The N50 value is too low to consider this a good assembly. We were able to bring the assembly vs genome % down to almost 100% percent at the cost of a connected graph which makes me think that there is a better way to assemble the genome and get a complete assembly.
@@ -118,4 +118,4 @@ Other members
 
 
 Generative AI Appendix
-Claude AI (Sonnet 5.5) was used to help create the pseudocode for this README file. Claude was fed the code and asked: "Can you create pseudocode for the De Bruijn graph class only?". Output was checked and revised before usage.
+Claude AI (Sonnet 5.5) was used to help create the pseudocode for this README file. Claude was fed the full code file and asked: "Can you create pseudocode for the De Bruijn graph class only?". Output was checked and revised before usage.
