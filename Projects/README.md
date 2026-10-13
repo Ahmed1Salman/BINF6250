@@ -34,59 +34,6 @@ CLASS DeBruijnGraph
       if graph list is empty, append kmer into walk
       else kmer_walkback = i
     return eulerian_walk(node = kmer_walkback, graph = graph, seed = seed)
-  def assemble_contigs(self, seed=None):
-    set random seed
-    make deep copy of graph
-    set outdegree_counter (edges leaving node)
-    set indegree_counter (incoming edges to node)
-    loop through current and forward nodes in graph_copy:
-        outdegree_counter[current_node] += number of nodes in forward_nodes
-        for each forward_node in forward_nodes:
-          indegree_counter[forward_node] += 1
-    eularian_start = each node in graph_copy where outdegree = indegree == 1
-    initialize contigs list
-    #start node exists:
-    for each start in eularian_start:
-        walk = eularian_walk(start, graph_copy, seed)
-        reverse walk
-        seq = tour_to_sequence(walk)
-        append seq to contig list
-    # no defined start node (can start anywhere)
-    if all nodes have outdegree - indegree == 0
-        start = random node from graph_copy
-        walk = eularian_walk(start, graph_copy, seed)
-        reverse walk
-        seq = tour_to_sequence(walk)
-        append seq to contig list
-    return contig list
-  def tour_to_sequence(self, tour):
-    if tour is empty or None:
-        return ""
-    sequence = first k-1mer
-    for each kmer in tour [:1]:
-      sequence =+ last character of kmer
-    return sequence
-  def get_assembly_stats(self, contigs):
-    initialize dict for stats storing
-    num_contigs = length of contigs list
-    contig_length = length of each contig
-    total_length = sum of all contig_lengths
-    longest_contig = max of contig_length
-    shortest_contig = min of contig_length
-    mean_length = contig_length / num_contig
-    n50_threshold = total_length / 2
-    n50_sum = 0
-    for each length in lengths, reverse sorted:
-      n50_sum += length of contig
-      if sum > threshold: # dont want to exceed threshold
-        n50_sum = length
-        break
-    return stats
-  def write_fasta(self, contigs, filename):
-    open filename for writing
-    for each (number, contig) in contigs:
-      write ">contig_" + number + newline
-      write contig + newline
 ```
 Successes
 
