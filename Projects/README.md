@@ -115,6 +115,7 @@ Personal Reflections
 
 Group Leader - Ahmed Salman
 The big task this time was to create a good assembly from yeast sequences. I ran into issues while trying to figure out the difference between repeats in a sequence and reverse strand duplicates. Specifically how to make the code tell the difference between the two. While we attempted to clear duplicate contigs after contig assembly, this does not mean that the contig itself was assembled correctly without reverse and forward strands meshing together. It is very possible to create a contig that seems unique but is actually formed from some forward and some reverse strand sequences. Resulting in a contig that shouldn't exist. A possible fix would be to check for reverse complementarity before contig assembly starts. I also want to point out that I do not think recursion is important or necessary in any shape or form here. If anything it made it much harder to control the output of the function without causing downstream problems.
+
 Other members
 
 
