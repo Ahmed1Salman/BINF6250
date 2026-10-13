@@ -1,5 +1,9 @@
 Introduction
+A Python implementation of a de novo genome assembler based on de Bruijn graphs. Sequencing reads are broken into k-mers, which become the edges of a directed graph whose nodes are (k-1)-mers. Walking an Eulerian path through the graph reconstructs the underlying sequence as one or more contigs.
 
+This assembler is developed on a toy dataset then tested againt the reference genome of *Sacchromyces cerevisiae* with single-end reads, up to 30x coverage.
+
+`DeBrujGraph` class takes a list of reads and a k-mer size, builds tha graph using recursion and assembles the contigs.
 
 Pseudocode
 ```
@@ -16,7 +20,8 @@ CLASS DeBruijnGraph
       loop through each sequence - k + 1
         prefix = read[i:i+k-1]
         suffix = read[i-1:i+k]
-        add_edge(prefix, suffix)
+        if edge doe not exist:
+          add_edge(prefix, suffix)
   def eulerian_walk(self,node,graph,seed=None)
     initialize kmer_history and walk if None
     initialize kmer_walkback
